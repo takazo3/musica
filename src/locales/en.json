@@ -1,0 +1,12 @@
+{
+  "comments": {
+    "length": "No Comments | 1 Comment | {count} Comments"
+  },
+  "register": {
+    "TOS": "Term of Service",
+    "accept": "I accept MUSICA's {0}"
+  },
+  "song": {
+    "comment_count": "No Comments | 1 Comment | {count} Comments"
+  }
+}

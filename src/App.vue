@@ -1,30 +1,45 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<div>
+  <app-header />
+
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is=" Component"></component>
+    </transition>  
+  </router-view>
+
+  <app-player />
+
+  <auth-modal />
+</div>
 </template>
+<script>
+import AppPlayer from './components/Player.vue';
+import AppHeader from './components/AppHeader.vue';
+import AuthModal from './components/Auth.vue';
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+export default {
+  name: 'App',
+  components: {
+    AppHeader,
+    AuthModal,
+    AppPlayer,
+  },
+  created(){
+    this.$store.dispatch('init_login')
+  }
+};
+</script>
+<style scoped>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 0.5s linear;
+}
+.fade-leave-to {
+  transition: all 0.5x linear;
+  opacity: 0;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
